@@ -22,9 +22,6 @@ public class StringPermutations {
     public static void main(String[] args) {
         String string = "abcdef";
         ArrayList<String> outputList = permutations(string);
-        for (int i = 0; i<outputList.size(); i++){
-            if(outputList.get(i).length()!=6) outputList.remove(i);
-        }
         for(String s: outputList) {
             System.out.println(s);
         }
