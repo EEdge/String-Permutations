@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author evanedge
+ * @author Evan Edge and Iain Raleigh
  */
 public class StringPermutations {
 
@@ -20,9 +20,11 @@ public class StringPermutations {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        String string = new String();
-        string = "abcd";
+        String string = "abcdef";
         ArrayList<String> outputList = permutations(string);
+        for (int i = 0; i<outputList.size(); i++){
+            if(outputList.get(i).length()!=6) outputList.remove(i);
+        }
         for(String s: outputList) {
             System.out.println(s);
         }
@@ -43,15 +45,21 @@ public class StringPermutations {
         
         for(int i = 0; i < substringList.size(); i++) {
             String substring3 = substringList.get(i);
-            for (int j = 0; j < substring3.length(); j++) {
-                String subBegin = substring3.substring(0, j);
-                String subEnd = substring3.substring(j+1);
-                String newSub = subBegin + substring1 + subEnd;
-                list.add(newSub);
+            if(substring3.length() == 1){
+                String newSub1 = substring1 + substring3;
+                String newSub2 = substring3 + substring1;
+                list.add(newSub1);
+                list.add(newSub2);
             }
-
-            list.add(substring1 + substring3);
-            list.add(substring3 + substring1);
+            else{
+                
+                for (int j = 0; j <= substring3.length(); j++) {
+                    String subBegin = substring3.substring(0, j);
+                    String subEnd = substring3.substring(j);
+                    String newSub = subBegin + substring1 + subEnd;
+                    list.add(newSub);
+                }
+            }
         }
         
         return list;
